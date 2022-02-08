@@ -4,8 +4,8 @@
   "description": "An opinionated Node.js microservice architecture",
   "main": "main.js",
   "engines": {
-    "node": "14.17.6",
-    "npm": "6.14.15"
+    "node": "16.13.2",
+    "npm": "8.1.2"
   },
   "scripts": {
     "_nodemon": "nodemon --legacy-watch --watch ./dist --inspect=0.0.0.0:9229 dist/main.js -- server",
