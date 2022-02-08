@@ -5,10 +5,10 @@ import { getTodosController } from "./get-todos.controller";
 import { postTodoController } from "./post-todo.controller";
 import { putTodoController } from "./put-todo.controller";
 
-export const todosRoute = express.Router({ mergeParams: true });
+export const todoRoute = express.Router({ mergeParams: true });
 
-todosRoute.get("/:id", getTodoController);
-todosRoute.get("", getTodosController);
-todosRoute.put("/:id", putTodoController);
-todosRoute.delete("/:id", deleteTodoController);
-todosRoute.post("", postTodoController);
+todoRoute.get("/:id", getTodoController);
+todoRoute.get("", getTodosController);
+todoRoute.put("/:id", putTodoController);
+todoRoute.delete("/:id", deleteTodoController);
+todoRoute.post("", postTodoController);

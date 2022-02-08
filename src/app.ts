@@ -1,10 +1,10 @@
 import express from "express";
-import { todosRoute } from "./controllers/todos/todos.router";
+import { todoRoute } from "./controllers/todos/todo.router";
 
 const app = express();
 
 app.use(express.json({ limit: "1mb" }));
 
-app.use("/todos", todosRoute);
+app.use("/todos", todoRoute);
 
 export default app;
