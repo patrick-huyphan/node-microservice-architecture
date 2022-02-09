@@ -1,7 +1,7 @@
 import request from "supertest";
 import { server } from "../../test.functions";
 import { putTodoController } from "./put-todo.controller";
-import { createDummyTodo } from "./todo.dummy";
+import { createStubTodo } from "./todo.stub";
 import { v4 as uuid } from "uuid";
 
 jest.mock("./todo.dao");
@@ -15,7 +15,7 @@ describe("putTodoController", () => {
 
   it("updates a todo", async () => {
     const updateTodo = require("./todo.dao").updateTodo;
-    const todo = createDummyTodo();
+    const todo = createStubTodo();
     updateTodo.mockResolvedValue(todo);
     const response = await request(app)
       .put(route.replace(":id", todo.id))
@@ -28,7 +28,7 @@ describe("putTodoController", () => {
   it("returns a 404 if a todo with the id does not exist", async () => {
     const updateTodo = require("./todo.dao").updateTodo;
     const otherTodoId = uuid();
-    const todo = createDummyTodo();
+    const todo = createStubTodo();
     updateTodo.mockResolvedValue("NotFound");
     await request(app)
       .put(route.replace(":id", otherTodoId))

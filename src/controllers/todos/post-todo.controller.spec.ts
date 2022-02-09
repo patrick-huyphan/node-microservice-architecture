@@ -3,7 +3,7 @@ import request from "supertest";
 import { v4 as uuid } from "uuid";
 import { server } from "../../test.functions";
 import { postTodoController } from "./post-todo.controller";
-import { createDummyTodo } from "./todo.dummy";
+import { createStubTodo } from "./todo.stub";
 import { Todo } from "./todo.type";
 
 jest.mock("./todo.dao");
@@ -17,7 +17,7 @@ describe("postTodoController", () => {
 
   it("creates a todo and returns it with an id", async () => {
     const createTodo = require("./todo.dao").createTodo;
-    const todo = omit("id", createDummyTodo());
+    const todo = omit("id", createStubTodo());
     const createdTodo: Todo = {
       ...todo,
       id: uuid(),

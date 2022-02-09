@@ -1,7 +1,7 @@
 import request from "supertest";
 import { server } from "../../test.functions";
 import { getTodosController } from "./get-todos.controller";
-import { createDummyTodo } from "./todo.dummy";
+import { createStubTodo } from "./todo.stub";
 
 jest.mock("./todo.dao");
 
@@ -14,7 +14,7 @@ describe("getTodosController", () => {
 
   it("returns the list of existing todos", async () => {
     const getTodos = require("./todo.dao").getTodos;
-    const todos = [createDummyTodo(), createDummyTodo()];
+    const todos = [createStubTodo(), createStubTodo()];
     getTodos.mockResolvedValue(todos);
     const response = await request(app).get(route).expect(200);
     expect(response).toHaveProperty("body", todos);

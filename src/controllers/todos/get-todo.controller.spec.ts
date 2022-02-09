@@ -2,7 +2,7 @@ import request from "supertest";
 import { v4 as uuid } from "uuid";
 import { server } from "../../test.functions";
 import { getTodoController } from "./get-todo.controller";
-import { createDummyTodo } from "./todo.dummy";
+import { createStubTodo } from "./todo.stub";
 
 jest.mock("./todo.dao");
 
@@ -15,7 +15,7 @@ describe("getTodoController", () => {
 
   it("returns the todo with the id", async () => {
     const getTodo = require("./todo.dao").getTodo;
-    const todo = createDummyTodo();
+    const todo = createStubTodo();
     getTodo.mockResolvedValue(todo);
     const response = await request(app)
       .get(route.replace(":id", todo.id))
