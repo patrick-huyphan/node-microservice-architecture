@@ -2,6 +2,7 @@ import request from "supertest";
 import { server } from "../../test.functions";
 import { putTodoController } from "./put-todo.controller";
 import { createDummyTodo } from "./todo.dummy";
+import { v4 as uuid } from "uuid";
 
 jest.mock("./todo.dao");
 
@@ -22,5 +23,17 @@ describe("putTodoController", () => {
       .expect(200);
     expect(response).toHaveProperty("body", todo);
     expect(updateTodo).toHaveBeenCalledWith(todo.id, todo);
+  });
+
+  it("returns a 404 if a todo with the id does not exist", async () => {
+    const updateTodo = require("./todo.dao").updateTodo;
+    const otherTodoId = uuid();
+    const todo = createDummyTodo();
+    updateTodo.mockResolvedValue("NotFound");
+    await request(app)
+      .put(route.replace(":id", otherTodoId))
+      .send(todo)
+      .expect(404);
+    expect(updateTodo).toHaveBeenCalledWith(otherTodoId, todo);
   });
 });

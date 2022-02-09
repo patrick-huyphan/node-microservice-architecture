@@ -20,7 +20,13 @@ export async function createTodo(todo: Todo): Promise<Todo> {
   return createdTodo;
 }
 
-export async function updateTodo(id: TodoId, todo: Todo): Promise<Todo> {
+export async function updateTodo(
+  id: TodoId,
+  todo: Todo
+): Promise<Todo | "NotFound"> {
+  if (!(id in todo)) {
+    return "NotFound";
+  }
   const updatedTodo = {
     ...todo,
     id,
