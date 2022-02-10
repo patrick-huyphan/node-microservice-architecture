@@ -19,4 +19,18 @@ describe("deleteTodoController", () => {
     await request(app).delete(route.replace(":id", todoId)).expect(204);
     expect(deleteTodo).toHaveBeenCalledWith(todoId);
   });
+
+  it("rejects an invalid ID", async () => {
+    const deleteTodo = require("./todo.dao").deleteTodo;
+    const todoId = "123";
+    deleteTodo.mockResolvedValue();
+    const response = await request(app)
+      .delete(route.replace(":id", todoId))
+      .expect(400);
+    expect(response).toHaveProperty(
+      "body.message",
+      'request.params.id should match format "uuid"'
+    );
+    expect(deleteTodo).not.toHaveBeenCalled();
+  });
 });
