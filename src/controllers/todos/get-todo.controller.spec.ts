@@ -37,7 +37,7 @@ describe("getTodoController", () => {
     const todoId = "123";
     getTodo.mockResolvedValue();
     const response = await request(app)
-      .delete(route.replace(":id", todoId))
+      .get(route.replace(":id", todoId))
       .expect(400);
     expect(response).toHaveProperty(
       "body.message",

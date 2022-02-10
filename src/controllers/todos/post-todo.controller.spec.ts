@@ -27,4 +27,19 @@ describe("postTodoController", () => {
     expect(response).toHaveProperty("body", createdTodo);
     expect(createTodo).toHaveBeenCalledWith(todo);
   });
+
+  it("rejects an invalid request body", async () => {
+    const createTodo = require("./todo.dao").createTodo;
+    const todoId = uuid();
+    createTodo.mockResolvedValue();
+    const response = await request(app)
+      .post(route.replace(":id", todoId))
+      .send({})
+      .expect(400);
+    expect(response).toHaveProperty(
+      "body.message",
+      "request.body should have required property 'name', request.body should have required property 'assignee', request.body should have required property 'dueDate'"
+    );
+    expect(createTodo).not.toHaveBeenCalled();
+  });
 });
