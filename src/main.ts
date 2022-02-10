@@ -2,7 +2,7 @@ import app from "./app";
 import * as http from "http";
 
 async function main(_args: string[]) {
-  const port = 3000;
+  const port = process.env.PORT ?? 3000;
   const server = http.createServer(app);
   server.listen(port, () => {
     console.log(`Server listening on port ${port}!`);
