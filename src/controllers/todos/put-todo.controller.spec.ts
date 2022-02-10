@@ -36,4 +36,18 @@ describe("putTodoController", () => {
       .expect(404);
     expect(updateTodo).toHaveBeenCalledWith(otherTodoId, todo);
   });
+
+  it("rejects an invalid ID", async () => {
+    const updateTodo = require("./todo.dao").updateTodo;
+    const todoId = "123";
+    updateTodo.mockResolvedValue();
+    const response = await request(app)
+      .delete(route.replace(":id", todoId))
+      .expect(400);
+    expect(response).toHaveProperty(
+      "body.message",
+      'request.params.id should match format "uuid"'
+    );
+    expect(updateTodo).not.toHaveBeenCalled();
+  });
 });
