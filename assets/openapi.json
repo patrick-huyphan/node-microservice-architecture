@@ -58,9 +58,21 @@
         }
       },
       "put": {
-        "summary": "Creates or modifies a todo",
-        "operationId": "modifyTodo",
+        "summary": "Updates a todo",
+        "operationId": "updateTodo",
         "tags": ["Todos"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "description": "The id of the todo",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
         "requestBody": {
           "required": true,
           "content": {
