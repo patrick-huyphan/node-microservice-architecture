@@ -10,6 +10,7 @@
   "scripts": {
     "_nodemon": "nodemon --legacy-watch --watch ./dist --inspect=0.0.0.0:9229 dist/main.js -- server",
     "_watch": "tsc --watch --incremental",
+    "postinstall": "tsc",
     "build": "tsc",
     "start": "npm run build && (npm run _nodemon & npm run _watch)",
     "test": "npx jest --runInBand --detectOpenHandles"

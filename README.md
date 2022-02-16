@@ -10,3 +10,4 @@ Hence, with each branch the application is reaching a more production-ready stat
 ## List of branches
 
 - `post-1-organizing-endpoints`: [Organizing endpoints](https://traveling-coderman.net/code/node-architecture/organizing-endpoints/)
+- `post-2-testing-endpoints`: [Testing endpoints](https://traveling-coderman.net/code/node-architecture/testing-endpoints/)
