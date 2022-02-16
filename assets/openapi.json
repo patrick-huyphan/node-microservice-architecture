@@ -6,9 +6,6 @@
   },
   "servers": [
     {
-      "url": "/services/todo/"
-    },
-    {
       "url": "/"
     }
   ],
@@ -85,7 +82,7 @@
         },
         "responses": {
           "200": {
-            "description": "The created or modified todo",
+            "description": "The updated todo",
             "content": {
               "application/json": {
                 "schema": {
