@@ -2,10 +2,6 @@ import jwt from "jsonwebtoken";
 import { mockControllerInputs } from "../test.functions";
 import { authenticate } from "./authenticate";
 
-const JWT_SIGNING_KEY = `-----BEGIN RSA PUBLIC KEY-----
-abc
------END RSA PUBLIC KEY-----`;
-
 jest.mock("../configuration/config", () => ({
   config: {
     authentication: {
@@ -18,7 +14,9 @@ jest.mock("../configuration/config", () => ({
 jest.mock("jwks-rsa", () => () => ({
   getSigningKey: () =>
     Promise.resolve({
-      getPublicKey: () => JWT_SIGNING_KEY,
+      getPublicKey: () => `-----BEGIN RSA PUBLIC KEY-----
+      abc
+      -----END RSA PUBLIC KEY-----`,
     }),
 }));
 
