@@ -14,3 +14,4 @@ Hence, with each branch the application is reaching a more production-ready stat
 - `post-3-openapi-validation`: [OpenAPI validation](https://traveling-coderman.net/code/node-architecture/openapi-input-validation/)
 - `post-4-logging`: [Logging](https://traveling-coderman.net/code/node-architecture/logging/)
 - `post-5-configuration-management`: [Configuration management](https://traveling-coderman.net/code/node-architecture/configuration-management/)
+- `post-6-authentication`: [Authentication](https://traveling-coderman.net/code/node-architecture/authentication/)
