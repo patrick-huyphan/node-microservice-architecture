@@ -21,9 +21,5 @@ export interface ProcessVariables {
   ENV?: Environment;
   LOG_LEVEL?: Level;
   JWKS_URL?: string;
-  POSTGRES_HOST?: string;
-  POSTGRES_PORT?: string;
-  POSTGRES_USER?: string;
-  POSTGRES_PASSWORD?: string;
-  POSTGRES_DB?: string;
+  DATABASE_URL?: string;
 }

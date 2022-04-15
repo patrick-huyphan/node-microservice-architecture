@@ -16,19 +16,10 @@ describe("the production configuration", () => {
   it("reads the database configuration from the environment", () => {
     expect(
       getProductionConfig({
-        POSTGRES_USER: "postgres",
-        POSTGRES_DB: "postgres",
-        POSTGRES_PASSWORD: "secret",
-        POSTGRES_HOST: "localhost",
-        POSTGRES_PORT: "5432",
+        DATABASE_URL: "postgres://username:password@host:port/database_name",
       })
     ).toHaveProperty("database", {
-      user: "postgres",
-      database: "postgres",
-      password: "secret",
-      host: "localhost",
-      port: 5432,
-      ssl: true,
+      connectionString: "postgres://username:password@host:port/database_name",
     } as Knex.PgConnectionConfig);
   });
 });
