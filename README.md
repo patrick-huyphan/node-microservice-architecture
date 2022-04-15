@@ -15,3 +15,4 @@ Hence, with each branch the application is reaching a more production-ready stat
 - `post-4-logging`: [Logging](https://traveling-coderman.net/code/node-architecture/logging/)
 - `post-5-configuration-management`: [Configuration management](https://traveling-coderman.net/code/node-architecture/configuration-management/)
 - `post-6-authentication`: [Authentication](https://traveling-coderman.net/code/node-architecture/authentication/)
+- `post-7-local-database`: [Local Database](https://traveling-coderman.net/code/node-architecture/local-database/)
