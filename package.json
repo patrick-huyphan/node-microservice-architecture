@@ -13,7 +13,11 @@
     "postinstall": "tsc",
     "build": "tsc",
     "start": "npm run build && (npm run _nodemon & npm run _watch)",
-    "test": "npx jest --runInBand --detectOpenHandles"
+    "test": "npx jest --runInBand --detectOpenHandles",
+    "db:wipe": "docker-compose down; docker volume rm nodemicroservicearchitecture_database-data; docker-compose up -d",
+    "db:migrate": "npx knex --knexfile ./src/database/knexfile.ts migrate:latest",
+    "db:seed": "npx knex --knexfile ./src/database/knexfile.ts seed:run",
+    "db:reset": "npm run db:wipe && npm run db:migrate && npm run db:seed"
   },
   "repository": {
     "type": "git",
