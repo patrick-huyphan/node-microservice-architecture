@@ -14,7 +14,9 @@ export function getProductionConfig(
     },
     database: {
       connectionString: processVariables.DATABASE_URL,
-      ssl: true,
+      ssl: {
+        rejectUnauthorized: false,
+      },
     },
   };
 }
