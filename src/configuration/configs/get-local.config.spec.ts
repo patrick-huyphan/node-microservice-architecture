@@ -1,3 +1,4 @@
+import { Knex } from "knex";
 import { getLocalConfig } from "./get-local.config";
 
 describe("the local configuration", () => {
@@ -10,5 +11,16 @@ describe("the local configuration", () => {
 
   it("defaults the log level to debug", () => {
     expect(getLocalConfig({})).toHaveProperty("logLevel", "debug");
+  });
+
+  it("defaults the database configuration", () => {
+    expect(getLocalConfig({})).toHaveProperty("database", {
+      user: "postgres",
+      database: "postgres",
+      password: "secret",
+      host: "localhost",
+      port: 5432,
+      ssl: false,
+    } as Knex.PgConnectionConfig);
   });
 });

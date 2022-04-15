@@ -12,5 +12,15 @@ export function getProductionConfig(
         processVariables.JWKS_URL ??
         "<JWKS_URL> needs to be set in production environment",
     },
+    database: {
+      user: processVariables.POSTGRES_USER,
+      host: processVariables.POSTGRES_HOST,
+      database: processVariables.POSTGRES_DB,
+      port: processVariables.POSTGRES_PORT
+        ? parseInt(processVariables.POSTGRES_PORT)
+        : undefined,
+      password: processVariables.POSTGRES_PASSWORD,
+      ssl: true,
+    },
   };
 }

@@ -1,3 +1,4 @@
+import { Knex } from "knex";
 import { Level } from "pino";
 
 export type Environment =
@@ -13,10 +14,16 @@ export interface Config {
     enabled: boolean;
     jwksUrl: string;
   };
+  database: Knex.PgConnectionConfig;
 }
 
 export interface ProcessVariables {
   ENV?: Environment;
   LOG_LEVEL?: Level;
   JWKS_URL?: string;
+  POSTGRES_HOST?: string;
+  POSTGRES_PORT?: string;
+  POSTGRES_USER?: string;
+  POSTGRES_PASSWORD?: string;
+  POSTGRES_DB?: string;
 }
