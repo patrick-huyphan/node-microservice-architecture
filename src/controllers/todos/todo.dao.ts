@@ -1,40 +1,43 @@
 import { v4 as uuid } from "uuid";
-import { todos } from "./todo.storage";
+import { db } from "../../database/db";
 import { Todo, TodoId } from "./todo.type";
 
-export async function getTodo(id: TodoId): Promise<Todo | undefined> {
-  return todos[id];
+export function getTodo(id: TodoId): Promise<Todo | undefined> {
+  return db.table<Todo>("todos").where("id", id).first<Todo>();
 }
 
-export async function getTodos(): Promise<Todo[]> {
-  return Object.values(todos);
+export function getTodos(): Promise<Todo[]> {
+  return db.table<Todo>("todos").select("*");
 }
 
 export async function createTodo(todo: Todo): Promise<Todo> {
-  const id = uuid();
-  const createdTodo = {
+  const todoWithId = {
     ...todo,
-    id,
+    id: uuid(),
   };
-  todos[id] = createdTodo;
-  return createdTodo;
+  await db.table<Todo>("todos").insert(todoWithId);
+  return todoWithId;
 }
 
 export async function updateTodo(
   id: TodoId,
   todo: Todo
 ): Promise<Todo | "NotFound"> {
-  if (!(id in todo)) {
-    return "NotFound";
-  }
-  const updatedTodo = {
+  const todoWithId = {
     ...todo,
     id,
   };
-  todos[id] = updatedTodo;
-  return updatedTodo;
+  const changedRowCount = await db
+    .table<Todo>("todos")
+    .where("id", id)
+    .update(todoWithId);
+  return changedRowCount === 0 ? "NotFound" : todoWithId;
 }
 
-export async function deleteTodo(id: TodoId): Promise<void> {
-  delete todos[id];
+export async function deleteTodo(id: TodoId): Promise<"Ok" | "NotFound"> {
+  const deletedRowCount = await db
+    .table<Todo>("todos")
+    .where("id", id)
+    .delete();
+  return deletedRowCount === 0 ? "NotFound" : "Ok";
 }
