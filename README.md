@@ -17,3 +17,4 @@ Hence, with each branch the application is reaching a more production-ready stat
 - `post-6-authentication`: [Authentication](https://traveling-coderman.net/code/node-architecture/authentication/)
 - `post-7-local-database`: [Local Database](https://traveling-coderman.net/code/node-architecture/local-database/)
 - `post-8-schema-migrations`: [Schema migrations](https://traveling-coderman.net/code/node-architecture/schema-migrations/)
+- `post-9-database-queries`: [Database queries](https://traveling-coderman.net/code/node-architecture/database-queries/)
